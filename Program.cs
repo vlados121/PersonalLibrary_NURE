@@ -86,17 +86,26 @@ namespace PersonalLibrary
             {
                 Book book = library.GetBookById(id);
                 if (book != null)
-                {
+                 {
                     Console.WriteLine("Залиште поле порожнім, якщо не хочете його змінювати.");
+            
                     Console.Write($"Автор ({book.Author}): ");
                     string author = Console.ReadLine();
+            
                     Console.Write($"Назва ({book.Title}): ");
                     string title = Console.ReadLine();
+
+                    Console.Write($"Видавництво ({book.Publisher}): ");
+                    string publisher = Console.ReadLine();
+
+                    Console.Write($"Розділ ({book.Category}): ");
+                    string category = Console.ReadLine();
+            
                     Console.Write($"Оцінка ({book.Rating}): ");
                     int.TryParse(Console.ReadLine(), out int rating);
 
-                    library.EditBook(id, author, title, rating);
-                    Console.WriteLine("Книгу оновлено!");
+                    library.EditBook(id, author, title, publisher, category, rating);
+                    Console.WriteLine("Книгу успішно оновлено!");
                 }
                 else Console.WriteLine("Книгу з таким ID не знайдено.");
             }

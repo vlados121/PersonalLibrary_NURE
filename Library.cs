@@ -31,13 +31,15 @@ namespace PersonalLibrary
         public List<Book> GetAllBooks() => books;
 
         // Оновлення полів існуючої книги
-        public bool EditBook(int id, string newAuthor, string newTitle, int newRating)
+        public bool EditBook(int id, string newAuthor, string newTitle, string newPublisher, string newCategory, int newRating)
         {
             Book book = FindBookById(id);
             if (book != null)
             {
                 if (!string.IsNullOrWhiteSpace(newAuthor)) book.Author = newAuthor;
                 if (!string.IsNullOrWhiteSpace(newTitle)) book.Title = newTitle;
+                if (!string.IsNullOrWhiteSpace(newPublisher)) book.Publisher = newPublisher;
+                if (!string.IsNullOrWhiteSpace(newCategory)) book.Category = newCategory;
                 if (newRating >= 1 && newRating <= 5) book.Rating = newRating;
                 SaveData();
                 return true;

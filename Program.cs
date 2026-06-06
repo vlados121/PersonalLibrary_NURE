@@ -103,14 +103,36 @@ namespace PersonalLibrary
         }
 
         static void RemoveBookMenu(Library library)
+{
+    Console.Write("\nВведіть ID книги для видалення: ");
+    if (int.TryParse(Console.ReadLine(), out int id))
+    {
+        Book book = library.GetBookById(id);
+        if (book != null)
         {
-            Console.Write("\nВведіть ID книги для видалення: ");
-            if (int.TryParse(Console.ReadLine(), out int id))
+            Console.Write($"Ви дійсно хочете видалити книгу '{book.Title}'? (т/н): ");
+            string confirm = Console.ReadLine().ToLower();
+            
+            if (confirm == "т" || confirm == "y")
             {
-                if (library.RemoveBook(id)) Console.WriteLine("Книгу видалено!");
-                else Console.WriteLine("Книгу з таким ID не знайдено.");
+                library.RemoveBook(id);
+                Console.WriteLine("Книгу видалено!");
+            }
+            else
+            {
+                Console.WriteLine("Видалення скасовано.");
             }
         }
+        else 
+        {
+            Console.WriteLine("Книгу з таким ID не знайдено.");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Помилка: ID має бути числом.");
+    }
+}
 
         static void SearchMenu(Library library)
         {
